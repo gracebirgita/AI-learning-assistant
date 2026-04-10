@@ -31,6 +31,8 @@ sed -i "s|__TELEGRAM_BOT_TOKEN__|${TELEGRAM_BOT_TOKEN}|g" ~/.openclaw/openclaw.j
 sed -i "s|__OPENROUTER_API_KEY__|${OPENROUTER_API_KEY:-}|g" ~/.openclaw/openclaw.json
 sed -i "s|__GEMINI_API_KEY__|${GEMINI_API_KEY:-}|g" ~/.openclaw/openclaw.json
 
+echo "Making scripts executable..."
+chmod +x start.sh stop.sh
 
 echo "OpenClaw setup complete!"
 echo ""

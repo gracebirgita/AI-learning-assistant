@@ -1,0 +1,22 @@
+{
+  "name": "OpenClaw Bot",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "forwardPorts": [18789],
+  "portsAttributes": {
+    "18789": {
+      "label": "OpenClaw Gateway",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "remoteEnv": {
+    "OPENROUTER_API_KEY": "${localEnv:OPENROUTER_API_KEY}",
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "TELEGRAM_BOT_TOKEN": "${localEnv:TELEGRAM_BOT_TOKEN}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.vscode-json"]
+    }
+  }
+}

@@ -23,7 +23,7 @@
 ### Get your Telegram Bot Token
 - Open Telegram → search @BotFather
 - Send /newbot
-- Follow prompts (pick a name and username)
+- Follow prompts (pick a name and **unique** username)
 - Copy the token (looks like 123456789:ABCdef...)
 - Paste it into your GitHub Codespaces secret
 

@@ -1,9 +1,11 @@
 #!/bin/bash
 
 echo "Starting OpenClaw..."
-openclaw gateway run &
 
-# Save the process ID so stop.sh knows what to kill
+# root dir
+cd ~
+
+openclaw gateway run &
 echo $! > ~/.openclaw/gateway.pid
 
 sleep 3

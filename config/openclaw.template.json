@@ -82,8 +82,7 @@
     "profile": "coding",
     "web": {
       "search": {
-        "provider": "tavily",
-        "apiKey": "__TAVILY_API_KEY__"
+        "provider": "tavily"
       }
     }
   },
@@ -116,6 +115,14 @@
       },
       "openrouter": {
         "enabled": true
+      },
+       "tavily": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "__TAVILY_API_KEY__"
+          }
+        }
       }
     }
   },

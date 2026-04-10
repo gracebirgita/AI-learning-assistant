@@ -16,9 +16,9 @@ if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
   exit 1
 fi
 
-if [ -z "$OPENROUTER_API_KEY" ] && [ -z "$GEMINI_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
+if [ -z "$OPENROUTER_API_KEY" ] && [ -z "$GEMINI_API_KEY" ]; then
   echo "ERROR: No AI provider key found. Set at least one of:"
-  echo "  OPENROUTER_API_KEY, GEMINI_API_KEY, or ANTHROPIC_API_KEY"
+  echo "  OPENROUTER_API_KEY, or GEMINI_API_KEY"
   echo "  in your Codespace secrets before rebuilding."
   exit 1
 fi
@@ -30,7 +30,6 @@ cp config/openclaw.template.json ~/.openclaw/openclaw.json
 sed -i "s|__TELEGRAM_BOT_TOKEN__|${TELEGRAM_BOT_TOKEN}|g" ~/.openclaw/openclaw.json
 sed -i "s|__OPENROUTER_API_KEY__|${OPENROUTER_API_KEY:-}|g" ~/.openclaw/openclaw.json
 sed -i "s|__GEMINI_API_KEY__|${GEMINI_API_KEY:-}|g" ~/.openclaw/openclaw.json
-sed -i "s|__ANTHROPIC_API_KEY__|${ANTHROPIC_API_KEY:-}|g" ~/.openclaw/openclaw.json
 
 
 echo "OpenClaw setup complete!"

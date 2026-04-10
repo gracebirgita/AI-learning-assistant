@@ -25,12 +25,12 @@
     "providers": {
       "openrouter": {
         "apiKey": "__OPENROUTER_API_KEY__",
-        "baseUrl": "https://openrouter.ai/api/v1",
+        "baseUrl": "",
         "models": []
       },
       "gemini": {
         "apiKey": "__GEMINI_API_KEY__",
-        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "baseUrl": "",
         "models": []
       }
     }

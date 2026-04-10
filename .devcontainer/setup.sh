@@ -35,8 +35,3 @@ echo "Making scripts executable..."
 chmod +x start.sh stop.sh
 
 echo "OpenClaw setup complete!"
-echo ""
-echo "--Next steps:"
-echo "  1. Add your Telegram user ID to allowFrom in ~/.openclaw/openclaw.json"
-echo "  2. Run: openclaw gateway run &"
-echo "  3. Open port 18789 to access the dashboard (if needed)"

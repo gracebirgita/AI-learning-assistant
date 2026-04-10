@@ -126,6 +126,11 @@
       "cron_reminder": {
         "enabled": true
       }
+    },
+    "search": {
+      "tavily": {
+        "apiKey": "__TAVILY_API_KEY__"       
+      }
     }
   },
   "cron": {

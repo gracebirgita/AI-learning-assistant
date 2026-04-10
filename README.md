@@ -34,6 +34,9 @@
 
 4. Create a Codespace → the setup runs automatically
    > Wait for the setup to finish — you'll see **"OpenClaw setup complete!"** in the terminal
+   * if postSetupCommands failed, in terminal run:
+
+     ```bash .devcontainer/setup.sh```
 5. Open the terminal if it's not already visible
    > Go to **Terminal → New Terminal** in the top menu
 6. Start your bot by typing:

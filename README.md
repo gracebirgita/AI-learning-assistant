@@ -16,7 +16,9 @@
 | `OPENROUTER_API_KEY` | From [openrouter.ai](https://openrouter.ai) — look for models labeled **(free)** |
 | `GEMINI_API_KEY` | From [aistudio.google.com](https://aistudio.google.com) |
 
-> You can only add **one** of `OPENROUTER_API_KEY` or `GEMINI_API_KEY` to get started.
+> You can only add `OPENROUTER_API_KEY` to get started
+> 
+> use `GEMINI_API_KEY` as a fallbacks if OpenRouter reach rate limit.
 
 ---
 

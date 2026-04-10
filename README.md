@@ -5,7 +5,7 @@
 
 <br>
 
-## Setup for your codespaces
+## Setup for codespaces
 1. Fork this repo
 2. Go to your fork →  **Settings → Secrets and variables → Codespaces**
 3. Add these secrets:
@@ -20,7 +20,7 @@
 
 ---
 
-### Get your Telegram Bot Token
+### Get Telegram Bot Token
 - Open Telegram → search @BotFather
 - Send /newbot
 - Follow prompts (pick a name and **unique** username)
@@ -53,7 +53,7 @@ When you're done, type this in the terminal:
 
 <br>
 
-## Add your Telegram user ID (first time only)
+## Add Telegram user ID (first time only)
 By default your bot won't respond to anyone until you whitelist yourself.
 
 - Message your bot on Telegram. If it's won't reply yet, in the terminal, run:

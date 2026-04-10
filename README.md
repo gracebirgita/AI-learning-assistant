@@ -5,7 +5,7 @@
 
 <br>
 
-## Setup for your repo
+## Setup for your codespaces
 1. Fork this repo
 2. Go to your fork →  **Settings → Secrets and variables → Codespaces**
 3. Add these secrets:
@@ -28,6 +28,8 @@
 - Paste it into your GitHub Codespaces secret
 
 ---
+<br>
+
 ## Start bot (learning assistant)
 
 4. Create a Codespace → the setup runs automatically
@@ -40,17 +42,15 @@
    > You should see: **"OpenClaw is running! Your Telegram bot is now active."**
 8. Open Telegram and message your bot to test it
 
----
 ## Stop bot
 
 When you're done, type this in the terminal:
 
 ```bash stop.sh```
 
----
+<br>
 
 ## Add your Telegram user ID (first time only)
-
 By default your bot won't respond to anyone until you whitelist yourself.
 
 - Message your bot on Telegram. If it's won't reply yet, in the terminal, run:

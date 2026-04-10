@@ -83,9 +83,7 @@
     "web": {
       "search": {
         "provider": "tavily",
-        "tavily": {
-          "apiKey": "__TAVILY_API_KEY__"
-        }
+        "apiKey": "__TAVILY_API_KEY__"
       }
     }
   },

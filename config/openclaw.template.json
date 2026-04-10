@@ -25,12 +25,12 @@
     "providers": {
       "openrouter": {
         "apiKey": "__OPENROUTER_API_KEY__",
-        "baseUrl": "",
+        "baseUrl": "https://openrouter.ai/api/v1",
         "models": []
       },
       "gemini": {
         "apiKey": "__GEMINI_API_KEY__",
-        "baseUrl": "",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
         "models": []
       }
     }
@@ -82,7 +82,10 @@
     "profile": "coding",
     "web": {
       "search": {
-        "provider": "gemini"
+        "provider": "tavily",
+        "tavily": {
+          "apiKey": "__TAVILY_API_KEY__"
+        }
       }
     }
   },
@@ -125,11 +128,6 @@
     "entries": {
       "cron_reminder": {
         "enabled": true
-      }
-    },
-    "search": {
-      "tavily": {
-        "apiKey": "__TAVILY_API_KEY__"       
       }
     }
   },

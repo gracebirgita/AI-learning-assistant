@@ -8,7 +8,22 @@ echo "Creating OpenClaw config directory..."
 mkdir -p ~/.openclaw/workspace
 
 echo "Copying all workspace personality files..."
+
+# checking: make sure workspace/ exists and has .md files
+if [ ! -f "workspace/SOUL.md" ]; then
+  echo "ERROR: workspace/SOUL.md not found."
+  echo "Make sure your personality files are in the 'workspace/' folder in your repo root."
+  echo "Current repo contents:"
+  ls -la
+  exit 1
+fi
+
+# copy into openclaw workspace
 cp -r workspace/. ~/.openclaw/workspace/
+
+# Verify copy worked
+echo "Verifying personality files copied..."
+ls ~/.openclaw/workspace/
 
 echo "Validating required secrets..."
 if [ -z "$TELEGRAM_BOT_TOKEN" ]; then

@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+echo "Installing system dependencies..."
+sudo apt-get update -qq
+sudo apt-get install -y cron
+
+# Start cron
+sudo service cron start
+
 echo "Installing OpenClaw..."
 npm install -g openclaw
 

@@ -10,6 +10,17 @@ echo $! > ~/.openclaw/gateway.pid
 
 sleep 3
 
+
+echo "Registering study reminder..."
+REMINDER="/workspaces/AI-learning-assistant/workspace/skills/cron-reminder/scripts/reminder.py"
+
+# Check crontab is available
+if ! command -v crontab &> /dev/null; then
+  echo "crontab not found, installing..."
+  sudo apt-get install -y cron -qq
+  sudo service cron start
+fi
+
 # list scheduled tasks
 # reminder not in schedule -> regist tasks, save to log
 if ! crontab -l 2>/dev/null | grep -q "reminder.py"; then
@@ -18,6 +29,10 @@ if ! crontab -l 2>/dev/null | grep -q "reminder.py"; then
 else
   echo "Study reminder already registered."
 fi
+
+# Verify it actually got registered
+echo "Verifying crontab..."
+crontab -l 2>/dev/null | grep "reminder.py" && echo "Confirmed." || echo "WARNING: Registration failed."
 
 echo ""
 echo "OpenClaw is running!"

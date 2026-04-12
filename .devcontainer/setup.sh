@@ -21,6 +21,18 @@ fi
 # copy into openclaw workspace
 cp -r workspace/. ~/.openclaw/workspace/
 
+# memory folder
+echo "Setting memory folder..."
+mkdir -p ~/.openclaw/workspace/memory
+
+# copy state file (if doesn't exist)
+if [ ! -f ~/.openclaw/workspace/memory/heartbeat-state.json ]; then
+  cp workspace/memory/heartbeat-state.json \
+     ~/.openclaw/workspace/memory/heartbeat-state.json
+  echo "heartbeat-state.json initialized."
+fi
+
+
 # Verify copy worked
 echo "Verifying personality files copied..."
 ls ~/.openclaw/workspace/
@@ -51,6 +63,7 @@ sed -i "s|__TAVILY_API_KEY__|${TAVILY_API_KEY:-}|g" ~/.openclaw/openclaw.json
 
 echo "Making scripts executable..."
 chmod +x start.sh stop.sh
+chmod +x workspace/skills/reminder/scripts/reminder.py
 
 # restart
 bash stop.sh && bash start.sh

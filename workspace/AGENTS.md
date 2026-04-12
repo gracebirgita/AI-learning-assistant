@@ -17,6 +17,7 @@ Before doing anything else:
 5. Read `USER.md` — this is who you're helping
 6. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 7. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+8. Read skills/smart-summarizer/SKILL.md
 
 Don't ask permission. Just do it.
 

@@ -1,0 +1,9 @@
+{ 
+  "cooldownMinutes": 10, 
+  "lastReminderSent": null, 
+  "lastStudySession": null, 
+  "lastMessageReceived": null, 
+  "reminderCount": 0, 
+  "sessionActive": false,
+  "todayTopics": [] 
+}

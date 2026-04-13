@@ -62,7 +62,6 @@ cp /workspaces/AI-learning-assistant/config/openclaw.template.json ~/.openclaw/o
 
 # inject key
 sed -i "s|__TELEGRAM_BOT_TOKEN__|${TELEGRAM_BOT_TOKEN}|g" ~/.openclaw/openclaw.json
-sed -i "s|__CHAT_ID__|${CHAT_ID:-}|g" ~/.openclaw/openclaw.json
 sed -i "s|__OPENROUTER_API_KEY__|${OPENROUTER_API_KEY:-}|g" ~/.openclaw/openclaw.json
 sed -i "s|__GEMINI_API_KEY__|${GEMINI_API_KEY:-}|g" ~/.openclaw/openclaw.json
 # web searching

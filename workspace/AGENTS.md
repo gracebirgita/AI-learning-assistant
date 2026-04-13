@@ -70,7 +70,6 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - Don't run destructive commands without asking.
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.
-- Don't send error or raw logs to user 
 
 ## External vs Internal
 
@@ -153,16 +152,11 @@ You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it
 ### Heartbeat vs Cron: When to Use Each
 
 **Use heartbeat when:**
-Things to check:
-- Any follow-up needed from the student's last study session?
-- Any topics the student struggled with that need reinforcement?
 
-When to reach out:
-- Student asked to be reminded about something specific
-- It's been requested in the session
-
-When to stay quiet (HEARTBEAT_OK):
-- Nothing pending from last session
+- Multiple checks can batch together (inbox + calendar + notifications in one turn)
+- You need conversational context from recent messages
+- Timing can drift slightly (every ~30 min is fine, not exact)
+- You want to reduce API calls by combining periodic checks
 
 **Use cron when:**
 
@@ -173,6 +167,30 @@ When to stay quiet (HEARTBEAT_OK):
 - Output should deliver directly to a channel without main session involvement
 
 **Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
+
+**Track your checks** in `memory/heartbeat-state.json`
+
+**When to reach out:**
+
+- Important email arrived
+- Calendar event coming up (&lt;2h)
+- Something interesting you found
+- It's been >8h since you said anything
+
+**When to stay quiet (HEARTBEAT_OK):**
+
+- Late night (23:00-08:00) unless urgent
+- Human is clearly busy
+- Nothing new since last check
+- You just checked &lt;30 minutes ago
+
+**Proactive work you can do without asking:**
+
+- Read and organize memory files
+- Check on projects (git status, etc.)
+- Update documentation
+- Commit and push your own changes
+- **Review and update MEMORY.md** (see below)
 
 ### 🔄 Memory Maintenance (During Heartbeats)
 

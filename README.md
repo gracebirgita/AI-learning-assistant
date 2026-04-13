@@ -8,9 +8,9 @@
 ## Setup for codespaces
 1. Fork this repo
 2. Go to your fork →  **Settings → Secrets and variables → Codespaces**
-3. Add these secrets:
+3. Add these secrets (exactly same **Secret Name**) :
 
-| Secret | Where to get it |
+| Secret Name | Where to get it |
 |--------|----------------|
 | `TELEGRAM_BOT_TOKEN` | From @BotFather on Telegram |
 | `OPENROUTER_API_KEY` | From [openrouter.ai](https://openrouter.ai) — look for models labeled **(free)** |

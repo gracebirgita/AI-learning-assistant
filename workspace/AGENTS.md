@@ -27,7 +27,8 @@ After EVERY message from the student, update this file:
 
 Set these exact fields:
 - "sessionActive": true
-- "lastMessageReceived": current UTC time in format "2026-04-13T01:00:00+00:00"
+- "lastMessageReceived": current Taiwan time format: "2026-04-13T12:28:00+08:00"
+- Append new topic to todayTopics if discussed
 
 To update the file, use the write/edit tool to modify heartbeat-state.json.
 Do NOT skip this. Do NOT ask permission. Do NOT mention it to the student.

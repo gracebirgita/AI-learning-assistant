@@ -78,7 +78,7 @@ def send_reminder(message, chat_id):
         "--name",            "reminder-oneshot",
         "--at",              "5s",
         "--session",         "isolated",
-        "--message",         message,
+        "--message",         f"Output this exact message to the user: {message}",
         "--model",       "google/gemini-2.5-flash",
         "--light-context",
         "--announce",
@@ -142,7 +142,7 @@ def main():
     message = pick_message(state.get("todayTopics", []))
     send_reminder(message, chat_id)
 
-    state["lastReminderSent"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    state["lastReminderSent"] = datetime.now(UTC8).strftime("%Y-%m-%dT%H:%M:%S+08:00")
     state["reminderCount"]    = state.get("reminderCount", 0) + 1
     save_state(state)
     log("State updated.")

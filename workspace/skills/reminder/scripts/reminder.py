@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-import subprocess
+import subprocess, shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -53,8 +53,25 @@ def pick_message(topics):
     return messages[minute % 2]
 
 def send_reminder(message, chat_id):
+    # find openclaw full path
+    openclaw_path=shutil.which("openclaw")
+    if not openclaw_path:
+        # fallback location
+        for path in [
+            "/home/node/.npm-global/bin/openclaw",
+            "/usr/local/bin/openclaw",
+            "/home/node/.local/bin/openclaw"
+        ]:
+            if Path(path).exists():
+                openclaw_path = path
+                break
+    if not openclaw_path:
+        log("ERROR: openclaw command not found.")
+        return
+    
     cmd = [
-        "openclaw", "cron", "add",
+        openclaw_path, 
+        "cron", "add",
         "--name",            "reminder-oneshot",
         "--at",              "5s",
         "--session",         "isolated",

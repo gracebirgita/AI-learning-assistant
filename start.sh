@@ -10,9 +10,12 @@ echo $! > ~/.openclaw/gateway.pid
 
 sleep 3
 
-
 echo "Registering study reminder..."
+
+# get PATH
+OPENCLAW_PATH=$(which openclaw)
 REMINDER="/workspaces/AI-learning-assistant/workspace/skills/reminder/scripts/reminder.py"
+CURRENT_PATH=$PATH
 
 # Check crontab is available
 if ! command -v crontab &> /dev/null; then
@@ -24,7 +27,7 @@ fi
 # list scheduled tasks
 # reminder not in schedule -> regist tasks, save to log
 if ! crontab -l 2>/dev/null | grep -q "reminder.py"; then
-  (crontab -l 2>/dev/null; echo "*/5 * * * * python3 $REMINDER >> /tmp/reminder.log 2>&1") | crontab -
+  (crontab -l 2>/dev/null; echo "*/5 * * * * PATH=$CURRENT_PATH python3 $REMINDER >> /tmp/reminder.log 2>&1") | crontab -
   echo "Study reminder registered."
 else
   echo "Study reminder already registered."

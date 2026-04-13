@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+echo "Installing system dependencies..."
+sudo apt-get update -qq
+sudo apt-get install -y cron
+
+# Start cron
+sudo service cron start
+
 echo "Installing OpenClaw..."
 npm install -g openclaw
 
@@ -20,6 +27,18 @@ fi
 
 # copy into openclaw workspace
 cp -r workspace/. ~/.openclaw/workspace/
+
+# memory folder
+echo "Setting memory folder..."
+mkdir -p ~/.openclaw/workspace/memory
+
+# copy state file (if doesn't exist)
+if [ ! -f ~/.openclaw/workspace/memory/heartbeat-state.json ]; then
+  cp workspace/memory/heartbeat-state.json \
+     ~/.openclaw/workspace/memory/heartbeat-state.json
+  echo "heartbeat-state.json initialized."
+fi
+
 
 # Verify copy worked
 echo "Verifying personality files copied..."
@@ -47,10 +66,12 @@ sed -i "s|__OPENROUTER_API_KEY__|${OPENROUTER_API_KEY:-}|g" ~/.openclaw/openclaw
 sed -i "s|__GEMINI_API_KEY__|${GEMINI_API_KEY:-}|g" ~/.openclaw/openclaw.json
 # web searching
 sed -i "s|__TAVILY_API_KEY__|${TAVILY_API_KEY:-}|g" ~/.openclaw/openclaw.json
-
+# to heartbeat state
+sed -i "s|__CHAT_ID__|${CHAT_ID:-}|g" ~/.openclaw/workspace/memory/heartbeat-state.json
 
 echo "Making scripts executable..."
 chmod +x start.sh stop.sh
+chmod +x workspace/skills/reminder/scripts/reminder.py
 
 # restart
 bash stop.sh && bash start.sh

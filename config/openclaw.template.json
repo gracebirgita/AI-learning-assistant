@@ -131,7 +131,10 @@
       "nodeManager": "npm"
     },
     "entries": {
-      "cron_reminder": {
+      "reminder": {
+        "enabled": true
+      },
+      "smart-summarizer": {
         "enabled": true
       }
     }

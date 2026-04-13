@@ -7,3 +7,7 @@ if [ -f ~/.openclaw/gateway.pid ]; then
 else
   echo "OpenClaw is not running."
 fi
+
+# remove study reminder from crontab
+crontab -l 2>/dev/null | grep -v "reminder.py" | crontab -
+echo "Study reminder stopped."

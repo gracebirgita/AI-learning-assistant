@@ -28,7 +28,6 @@ After EVERY message from the student, update this file:
 Set these exact fields:
 - "sessionActive": true
 - "lastMessageReceived": current Taiwan time format: "2026-04-13T12:28:00+08:00"
-- Append new topic to todayTopics if discussed
 
 To update the file, use the write/edit tool to modify heartbeat-state.json.
 Do NOT skip this. Do NOT ask permission. Do NOT mention it to the student.
@@ -168,7 +167,24 @@ You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it
 
 **Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
 
-**Track your checks** in `memory/heartbeat-state.json`
+**Things to check (rotate through these, 2-4 times per day):**
+
+- **Emails** - Any urgent unread messages?
+- **Calendar** - Upcoming events in next 24-48h?
+- **Mentions** - Twitter/social notifications?
+- **Weather** - Relevant if your human might go out?
+
+**Track your checks** in `memory/heartbeat-state.json`:
+
+```json
+{
+  "lastChecks": {
+    "email": 1703275200,
+    "calendar": 1703260800,
+    "weather": null
+  }
+}
+```
 
 **When to reach out:**
 

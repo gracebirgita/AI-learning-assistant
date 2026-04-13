@@ -1,10 +1,9 @@
 { 
   "cooldownMinutes": 10, 
   "lastReminderSent": null, 
-  "lastStudySession": null, 
   "lastMessageReceived": null, 
   "reminderCount": 0, 
-  "sessionActive": false,
-  "telegramChatId": "__CHAT_ID__",
+  "sessionActive": false, 
+  "telegramChatId": "__CHAT_ID__", 
   "todayTopics": [] 
 }

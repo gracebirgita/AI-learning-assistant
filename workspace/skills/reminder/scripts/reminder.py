@@ -94,8 +94,9 @@ def send_reminder(message, chat_id):
             "--delete-after-run"
         ]
         result = subprocess.run(cmd, capture_output=True, text=True)
-        if result.returncode != 0:
-            log(f"OpenClaw error: {result.stderr}")
+        if result.returncode == 0:
+            log(f"Reminder sent via {model}: {message}")
+            return
         else:
             log(f"Reminder sent: {message}")
     

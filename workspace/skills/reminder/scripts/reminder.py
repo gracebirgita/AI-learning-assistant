@@ -52,16 +52,18 @@ def pick_message(topics):
         ]
     return messages[minute % 2]
 
-def send_reminder(message):
+def send_reminder(message, chat_id):
     cmd = [
         "openclaw", "cron", "add",
         "--name",            "reminder-oneshot",
         "--at",              "5s",
         "--session",         "isolated",
         "--message",         message,
+        "--model",       "google/gemini-2.5-flash"
         "--light-context",
         "--announce",
         "--channel",         "telegram",
+        "--to",          str(chat_id),
         "--delete-after-run"
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
@@ -76,6 +78,11 @@ def main():
     state = load_state()
     if not state:
         log("No state file, skipping.")
+        return
+    chat_id = state.get("telegramChatId")
+    if not chat_id or chat_id=="null" or chat_id=="__CHAT_ID__":
+        log("No telegramChatId in state file, skipping.")
+        log("Add CHAT_ID to your Codespace secrets and rebuild.")
         return
 
     if not state.get("sessionActive"):
@@ -113,7 +120,7 @@ def main():
 
     # All checks passed = send ONE reminder (only API call)
     message = pick_message(state.get("todayTopics", []))
-    send_reminder(message)
+    send_reminder(message, chat_id)
 
     state["lastReminderSent"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
     state["reminderCount"]    = state.get("reminderCount", 0) + 1

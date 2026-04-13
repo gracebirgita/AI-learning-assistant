@@ -47,7 +47,6 @@
           }
       }
   },
-  "telegramChatId": "__CHAT_ID__",
   "gateway": {
     "mode": "local",
     "auth": {

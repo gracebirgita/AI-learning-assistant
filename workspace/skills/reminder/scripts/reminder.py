@@ -34,7 +34,7 @@ def minutes_since(iso_timestamp):
     if not iso_timestamp or iso_timestamp == "null":
         return 9999
     try:
-        dt = datetime.fromisoformat(iso_timestamp.replace("Z", "+00:00"))
+        dt = datetime.fromisoformat(iso_timestamp.replace("Z", "+08:00"))
         return int((datetime.now(timezone.utc) - dt).total_seconds() / 60)
     except Exception as e:
         log(f"Timestamp error: {e}")
@@ -50,8 +50,8 @@ def pick_message(topics):
         ]
     else:
         messages = [
-            "Still there? Want a quick 5-min quiz? 📚",
-            "Hi! Quick review now locks it in. Quiz time? ⚡",
+            "Still there? Are there any topics you want to learn? 📚",
+            "Hi! Quick reminder. Are you ready to continue your learnings? ⚡",
         ]
     return messages[minute % 2]
 
@@ -72,26 +72,34 @@ def send_reminder(message, chat_id):
         log("ERROR: openclaw command not found.")
         return
     
-    cmd = [
-        openclaw_path, 
-        "cron", "add",
-        "--name",            "reminder-oneshot",
-        "--at",              "5s",
-        "--session",         "isolated",
-        "--message",         f"Output this exact message to the user: {message}",
-        "--model",       "google/gemini-2.5-flash",
-        "--light-context",
-        "--announce",
-        "--channel",         "telegram",
-        "--to",          str(chat_id),
-        "--delete-after-run"
+    models = [
+        "google/gemini-2.5-flash",
+        "openrouter/openai/gpt-oss-120b:free",
+        "openrouter/openai/gpt-oss-20b:free",
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if result.returncode != 0:
-        log(f"OpenClaw error: {result.stderr}")
-    else:
-        log(f"Reminder sent: {message}")
 
+    for model in models:
+        cmd = [
+            openclaw_path, 
+            "cron", "add",
+            "--name",            "reminder-oneshot",
+            "--at",              "5s",
+            "--session",         "isolated",
+            "--message",         f"Output this exact message to the user: {message}",
+            "--model",       model,
+            "--light-context",
+            "--announce",
+            "--channel",         "telegram",
+            "--to",          str(chat_id),
+            "--delete-after-run"
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            log(f"OpenClaw error: {result.stderr}")
+        else:
+            log(f"Reminder sent: {message}")
+    
+    log("ERROR: All models failed.")
 def main():
     log("-" * 40)
 

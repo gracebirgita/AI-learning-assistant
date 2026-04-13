@@ -2,7 +2,7 @@
 
 import json
 import subprocess, shutil
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 STATE_PATH = Path.home() / ".openclaw/workspace/memory/heartbeat-state.json"
@@ -10,8 +10,11 @@ LOG_PATH   = Path("/tmp/reminder.log")
 
 MAX_INACTIVE_MINUTES = 30  # stop reminding
 
+# UTC+8 (taiwan timezone)
+UTC8 = timezone(timedelta(hours=8))
+
 def log(msg):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now(UTC8).strftime("%Y-%m-%d %H:%M:%S UTC+8")
     line = f"{timestamp}: {msg}\n"
     print(line, end="")
     with open(LOG_PATH, "a") as f:
@@ -76,7 +79,7 @@ def send_reminder(message, chat_id):
         "--at",              "5s",
         "--session",         "isolated",
         "--message",         message,
-        "--model",       "google/gemini-2.5-flash"
+        "--model",       "google/gemini-2.5-flash",
         "--light-context",
         "--announce",
         "--channel",         "telegram",
@@ -127,7 +130,7 @@ def main():
         return
 
     # Check cooldown between reminders
-    cooldown     = state.get("cooldownMinutes", 30)
+    cooldown     = state.get("cooldownMinutes", 10)
     last_rem     = state.get("lastReminderSent")
     since_remind = minutes_since(last_rem)
 

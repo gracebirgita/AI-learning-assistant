@@ -12,7 +12,7 @@ sleep 3
 
 
 echo "Registering study reminder..."
-REMINDER="/workspaces/AI-learning-assistant/workspace/skills/cron-reminder/scripts/reminder.py"
+REMINDER="/workspaces/AI-learning-assistant/workspace/skills/reminder/scripts/reminder.py"
 
 # Check crontab is available
 if ! command -v crontab &> /dev/null; then

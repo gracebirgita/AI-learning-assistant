@@ -60,6 +60,13 @@ Returns:
 - Action items (with owners if mentioned)
 - Open questions
 
+## Output Formats
+
+### 💬 Chat (default)
+Sends summary directly in Telegram message.
+### 📄 Markdown File
+Best for: saving summaries, sharing, future reference
+
 ## Output Languages
 
 Summarize in any language:

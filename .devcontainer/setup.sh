@@ -11,11 +11,14 @@ sudo service cron start
 echo "Installing OpenClaw..."
 npm install -g openclaw
 
-echo "Creating OpenClaw config directory..."
-mkdir -p ~/.openclaw/workspace
+echo "Create OpenClaw config and workspace directories..."
+mkdir -p ~/.openclaw/workspace/memory
+
+# set language (traditional chinese)
+echo "set default language : Traditional Chinese..."
+openclaw config set language zh-TW 2>/dev/null || true
 
 echo "Copying all workspace personality files..."
-
 # checking: make sure workspace/ exists and has .md files
 if [ ! -f "workspace/SOUL.md" ]; then
   echo "ERROR: workspace/SOUL.md not found."
@@ -34,9 +37,11 @@ mkdir -p ~/.openclaw/workspace/memory
 
 # copy state file (if doesn't exist)
 if [ ! -f ~/.openclaw/workspace/memory/heartbeat-state.json ]; then
+  echo "heartbeat-state.json initialized..."
   cp workspace/memory/heartbeat-state.json \
      ~/.openclaw/workspace/memory/heartbeat-state.json
-  echo "heartbeat-state.json initialized."
+else 
+  echo "heartbeat-state.json already exists, skipping."
 fi
 
 
@@ -58,7 +63,8 @@ if [ -z "$OPENROUTER_API_KEY" ] && [ -z "$GEMINI_API_KEY" ]; then
 fi
 
 echo "Writing openclaw.json from template..."
-cp /workspaces/AI-learning-assistant/config/openclaw.template.json ~/.openclaw/openclaw.json
+REPO_ROOT="$(pwd)"
+cp "${REPO_ROOT}/config/openclaw.template.json" ~/.openclaw/openclaw.json
 
 # inject key
 sed -i "s|__TELEGRAM_BOT_TOKEN__|${TELEGRAM_BOT_TOKEN}|g" ~/.openclaw/openclaw.json
@@ -74,5 +80,7 @@ chmod +x start.sh stop.sh
 chmod +x workspace/skills/reminder/scripts/reminder.py
 
 # restart
-bash stop.sh && bash start.sh
+bash stop.sh 2>/dev/null || true
+bash start.sh
+
 echo "OpenClaw setup complete!"

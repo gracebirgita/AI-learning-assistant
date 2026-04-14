@@ -14,10 +14,6 @@ npm install -g openclaw
 echo "Create OpenClaw config and workspace directories..."
 mkdir -p ~/.openclaw/workspace/memory
 
-# set language (traditional chinese)
-echo "set default language : Traditional Chinese..."
-openclaw config set language zh-TW 2>/dev/null || true
-
 echo "Copying all workspace personality files..."
 # checking: make sure workspace/ exists and has .md files
 if [ ! -f "workspace/SOUL.md" ]; then

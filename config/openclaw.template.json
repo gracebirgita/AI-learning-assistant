@@ -3,7 +3,7 @@
     "defaults": {
       "workspace": "~/.openclaw/workspace",
       "model": {
-        "primary": "openrouter/auto",
+        "primary": "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
         "fallbacks": [
           "google/gemini-3-flash-preview",
           "google/gemini-2.5-flash",
